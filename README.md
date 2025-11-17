@@ -28,6 +28,7 @@ A unified platform to provide operational insights, predictive analytics, and tr
 ---
 
 ## Project Structure
+``` 
 
 Smart-Manufacturing-Dashboard-for-Industry-4.0/
 ├── .env.example
@@ -77,6 +78,8 @@ Smart-Manufacturing-Dashboard-for-Industry-4.0/
 │   └── vite.config.js
 │
 └── README.md
+
+``` 
 
 
 
