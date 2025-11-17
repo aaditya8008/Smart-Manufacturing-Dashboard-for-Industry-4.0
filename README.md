@@ -1,35 +1,44 @@
 # Smart-Manufacturing-Dashboard-for-Industry-4.0
 
-A unified platform to provide operational insights, predictive analytics, and trend visualizations for modern manufacturing. The dashboard aims to empower manufacturers to monitor key metrics, predict equipment failures, analyze supply-chain risks, and stay updated with Industry 4.0 trends through interactive, AI-powered visualization.
+A unified Industry 4.0 analytics platform providing **real-time equipment monitoring**, **predictive maintenance**, and **global manufacturing trend insights**.  
+This dashboard focuses ** on Predictive Maintenance and Industry 4.0 Trends**, using live IoT data and unsupervised anomaly detection.
 
 ---
 
 ## Team Members
 
-- Aaditya – Team Lead, Frontend, Cloud Deplyment & API Integration  
-- Ankit Nath – AI Integration & Cloud Deployment  
-- Ishita Gautam – Frontend Web Developer  
-- Rohit Kapoor – ML/AI and API Integration  
-- Supervisor: Dr. Ruchi Verma (Assistant Professor, CSE/IT)
+- **Aaditya** – Team Lead, Frontend, Backend Integration, API Development  
+- **Ankit Nath** – ML Integration & API Development  
+- **Ishita Gautam** – Frontend Web Developer  
+- **Rohit Kapoor** – ML Model Development (Predictive Maintenance)  
+- **Supervisor:** *Dr. Ruchi Verma*, Assistant Professor (CSE/IT)
 
 ---
 
 ## Technologies Used
 
-- Frontend: React.js, Chart.js, Material-UI  
-- Backend: FastAPI (Python), RESTful APIs  
-- Machine Learning: TensorFlow, Python Jupyter Notebooks  
-- Database: MongoDB, AWS S3  
-- Cloud: AWS EC2, ECS, Lambda, Docker, Terraform  
-- Version Control: Git, GitHub
+### **Frontend**
+- React.js (Vite)
+- Tailwind CSS
+- Chart.js (via react-chartjs-2)
 
----
+### **Backend**
+- FastAPI (Python)
+- REST APIs
+- httpx (IoT sensor fetching)
+
+### **Machine Learning**
+- **Predictive Maintenance:** Isolation Forest *(Unsupervised Anomaly Detection)*  
+- Scikit-learn, Pandas, NumPy
+
+### **External APIs**
+- ThingSpeak API (Live IoT Sensor Data)
+- Google News RSS (Industry 4.0 Trends)
 
 ---
 
 ## Project Structure
-``` 
-
+```
 Smart-Manufacturing-Dashboard-for-Industry-4.0/
 ├── .env.example
 │
@@ -78,49 +87,67 @@ Smart-Manufacturing-Dashboard-for-Industry-4.0/
 │   └── vite.config.js
 │
 └── README.md
-
-``` 
-
-
-
----
-
+```
 
 ---
 
 ## Features
 
-- Predictive maintenance with machine learning
-- Supply chain risk analysis
-- Industry trends tracking
-- Cloud-based deployment for scalability and reliability
+### **1. Predictive Maintenance**
+- Live IoT data fetched via ThingSpeak API  
+- Isolation Forest anomaly detection  
+- Real‑time anomaly score chart  
+- Temperature & vibration trend charts  
+- Sensor table with highlight indicators  
+- Auto-refreshing monitoring system  
+
+### **2. Industry 4.0 Trends**
+- Fetches global manufacturing & Industry 4.0 news  
+- Clean UI TrendCards  
+- Auto-updating RSS system  
+
+### **3. Unified Dashboard**
+- KPIs  
+- Real-time line charts  
+- Latest trends sidebar  
+- Status indicators  
 
 ---
 
 ## Setup and Installation
 
-**Prerequisites:**  
-- Node.js (v16+), npm  
-- Python (3.9+) with pip  
-- Docker (optional for containerized deployment)  
-- AWS CLI configured with your credentials
+### **Prerequisites**
+- Node.js  
+- Python 3.9+  
+- pip  
 
-**Installation Steps:**  
-1. Clone the repository  
-2. Setup frontend  
-   -`cd src/frontend`
-   -npm install
-   -npm start
-3. Setup backend
-  - `cd ../../backend`
-  -  pip install -r requirements.txt
-  -  uvicorn main:app --reload
+---
 
-4. For ML models, follow instructions in `/docs/ml_setup.md`  
-5. For cloud deployment, see `/infra/DEPLOY.md`
+## **Backend Setup**
+```
+cd backend
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
+
+Backend runs at:
+http://localhost:8000
+
+---
+
+## **Frontend Setup**
+```
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend runs at:
+http://localhost:3000
 
 ---
 
 ## License
-
-This repository is for academic purposes only.
+This project is developed for **academic and research purposes** under the Smart Manufacturing & Industry 4.0 domain.
