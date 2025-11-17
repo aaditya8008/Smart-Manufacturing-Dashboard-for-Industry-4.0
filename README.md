@@ -25,6 +25,62 @@ A unified platform to provide operational insights, predictive analytics, and tr
 
 ---
 
+---
+
+## Project Structure
+
+Smart-Manufacturing-Dashboard-for-Industry-4.0/
+├── .env.example
+│
+├── backend/
+│   ├── app/
+│   │   ├── config.py
+│   │   ├── main.py
+│   │   ├── models/
+│   │   │   └── live_anomaly_model.py
+│   │   ├── routers/
+│   │   │   ├── live.py
+│   │   │   └── trends.py
+│   │   └── services/
+│   │       └── predictive_service.py
+│   └── requirements.txt
+│
+├── frontend/
+│   ├── .gitignore
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── public/
+│   │   └── vite.svg
+│   ├── README.md
+│   ├── src/
+│   │   ├── App.css
+│   │   ├── App.jsx
+│   │   ├── assets/
+│   │   │   └── react.svg
+│   │   ├── components/
+│   │   │   ├── ChartCard.jsx
+│   │   │   ├── KPI.jsx
+│   │   │   ├── NavBar.jsx
+│   │   │   └── TrendCard.jsx
+│   │   ├── index.css
+│   │   ├── main.jsx
+│   │   ├── pages/
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── Predictive.jsx
+│   │   │   └── Trends.jsx
+│   │   └── services/
+│   │       └── api.js
+│   ├── tailwind.config.js
+│   └── vite.config.js
+│
+└── README.md
+
+
+---
+
 
 ---
 
