@@ -24,19 +24,32 @@ export default function Predictive() {
     async function load() {
       try {
         const h = await getHistory(300);
-        setHistory(h.series || []);
+
+        
+        const series = h.series || [];
+        const unique = [];
+        const seen = new Set();
+
+        for (const item of series) {
+          if (!seen.has(item.timestamp)) {
+            seen.add(item.timestamp);
+            unique.push(item);
+          }
+        }
+
+        setHistory(unique);
         setLoading(false);
+
       } catch (err) {
         console.error("Error loading ThingSpeak data:", err);
         setLoading(false);
       }
     }
+
     load();
-    const interval = setInterval(load, 10000);
+    const interval = setInterval(load, 5000);
     return () => clearInterval(interval);
   }, []);
-
-  // 🟢 Removed auto-scroll effect so charts don't move right automatically
 
   const limitedHistory = history.slice(-25);
   const labels = limitedHistory.map((r) =>

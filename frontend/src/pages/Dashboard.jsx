@@ -31,11 +31,23 @@ export default function Dashboard() {
           getHistory(150),
           getTrends("industry 4.0 OR manufacturing OR smart factory", 5),
         ]);
-        // remove setRisk(r)
-        
+
         setLive(l.data || {});
-        setHistory(h.series || []);
-      
+
+        
+        const series = h.series || [];
+        const unique = [];
+        const seen = new Set();
+
+        for (const item of series) {
+          if (!seen.has(item.timestamp)) {
+            seen.add(item.timestamp);
+            unique.push(item);
+          }
+        }
+
+        setHistory(unique);
+
         setTrends(t.items || []);
       } catch (err) {
         console.error("Error loading dashboard data:", err);
@@ -43,12 +55,11 @@ export default function Dashboard() {
     }
 
     loadAll();
-    const interval = setInterval(loadAll, 120000);
+    const interval = setInterval(loadAll, 5000);
     return () => clearInterval(interval);
   }, []);
 
- 
-
+  // Chart Data Prep
   const limitedHistory = history.slice(-25);
   const labels = limitedHistory.map((r) =>
     new Date(r.timestamp).toLocaleTimeString([], {
@@ -129,86 +140,59 @@ export default function Dashboard() {
           value={live?.anomaly_score ?? "--"}
           sub={live?.anomaly ? "⚠️ Anomaly Detected" : "Normal"}
         />
-        
       </div>
 
-      {/* Charts and Trends */}
+      {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         <div className="lg:col-span-3 grid md:grid-cols-2 gap-6">
-          {/* Combined Chart */}
+
+          {/* Combined */}
           <ChartCard title="Temperature, Humidity & Rain (Combined)">
-            <div
-              className="h-66 overflow-x-auto overflow-y-hidden pb-2"
-              ref={(el) => (scrollRefs.current[0] = el)}
-            >
+            <div className="h-66 overflow-x-auto pb-2" ref={(el) => (scrollRefs.current[0] = el)}>
               <div className="min-w-[800px] h-64">
-                {history.length > 0 ? (
-                  <Line data={combinedData} options={combinedOptions} />
-                ) : (
-                  <div className="h-64 flex items-center justify-center text-gray-500">
-                    Waiting for live data...
-                  </div>
+                {history.length > 0 ? <Line data={combinedData} options={combinedOptions} /> : (
+                  <div className="h-64 flex items-center justify-center text-gray-500">Waiting for live data...</div>
                 )}
               </div>
             </div>
           </ChartCard>
 
-          {/* Pressure Chart */}
+          {/* Pressure */}
           <ChartCard title="Pressure Trend (hPa)">
-            <div
-              className="h-66 overflow-x-auto overflow-y-hidden pb-2"
-              ref={(el) => (scrollRefs.current[1] = el)}
-            >
+            <div className="h-66 overflow-x-auto pb-2" ref={(el) => (scrollRefs.current[1] = el)}>
               <div className="min-w-[800px] h-64">
-                {history.length > 0 ? (
-                  <Line data={pressureData} options={combinedOptions} />
-                ) : (
-                  <div className="h-64 flex items-center justify-center text-gray-500">
-                    Waiting for data...
-                  </div>
+                {history.length > 0 ? <Line data={pressureData} options={combinedOptions} /> : (
+                  <div className="h-64 flex items-center justify-center text-gray-500">Waiting for data...</div>
                 )}
               </div>
             </div>
           </ChartCard>
 
-          {/* Wind Chart */}
+          {/* Wind */}
           <ChartCard title="Wind Trend (m/s)">
-            <div
-              className="h-66 overflow-x-auto overflow-y-hidden pb-2"
-              ref={(el) => (scrollRefs.current[2] = el)}
-            >
+            <div className="h-66 overflow-x-auto pb-2" ref={(el) => (scrollRefs.current[2] = el)}>
               <div className="min-w-[800px] h-64">
-                {history.length > 0 ? (
-                  <Line data={windData} options={combinedOptions} />
-                ) : (
-                  <div className="h-64 flex items-center justify-center text-gray-500">
-                    Waiting for data...
-                  </div>
+                {history.length > 0 ? <Line data={windData} options={combinedOptions} /> : (
+                  <div className="h-64 flex items-center justify-center text-gray-500">Waiting for data...</div>
                 )}
               </div>
             </div>
           </ChartCard>
 
-          {/* Anomaly Chart */}
+          {/* Anomaly */}
           <ChartCard title="Anomaly Scores Over Time">
-            <div
-              className="h-66 overflow-x-auto overflow-y-hidden pb-2"
-              ref={(el) => (scrollRefs.current[3] = el)}
-            >
+            <div className="h-66 overflow-x-auto pb-2" ref={(el) => (scrollRefs.current[3] = el)}>
               <div className="min-w-[800px] h-64">
-                {history.length > 0 ? (
-                  <Line data={anomalyData} options={combinedOptions} />
-                ) : (
-                  <div className="h-64 flex items-center justify-center text-gray-500">
-                    Waiting for data...
-                  </div>
+                {history.length > 0 ? <Line data={anomalyData} options={combinedOptions} /> : (
+                  <div className="h-64 flex items-center justify-center text-gray-500">Waiting for data...</div>
                 )}
               </div>
             </div>
           </ChartCard>
+
         </div>
 
-        {/* Sidebar with Latest News */}
+        {/* News */}
         <div className="lg:col-span-1 space-y-4">
           <h3 className="text-lg font-semibold text-gray-800 border-b border-gray-300 pb-2">
             Latest Industry 4.0 News
@@ -223,20 +207,14 @@ export default function Dashboard() {
                   onClick={() => window.open(t.url, "_blank", "noopener")}
                   className="cursor-pointer p-3 bg-white rounded-lg border border-gray-200 hover:shadow-md transition-all hover:-translate-y-0.5"
                 >
-                  <p className="text-sm font-medium text-gray-900 line-clamp-2">
-                    {t.title}
-                  </p>
-                  <p className="text-xs text-gray-500 mt-1">
-                    {t.source ?? "Unknown Source"}
-                  </p>
+                  <p className="text-sm font-medium text-gray-900 line-clamp-2">{t.title}</p>
+                  <p className="text-xs text-gray-500 mt-1">{t.source ?? "Unknown Source"}</p>
                 </li>
               ))}
             </ul>
           )}
         </div>
       </div>
-
-      
 
       <p className="text-right text-xs text-gray-500 mt-4">
         Last refreshed: {new Date().toLocaleTimeString()}
