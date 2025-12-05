@@ -2,7 +2,15 @@
 
 A unified Industry 4.0 analytics platform providing **real-time equipment monitoring**, **predictive maintenance**, and **global manufacturing trend insights**.  
 This dashboard focuses **on Predictive Maintenance and Industry 4.0 Trends**, using live IoT data and unsupervised anomaly detection.
+---
+## 🎥 Project Description Video
 
+<p align="center">
+  <iframe src="https://drive.google.com/file/d/1jpg7239VLSnmd8omnzy6J_0lhkgLzVti/preview"
+          width="720" height="405" allow="autoplay"></iframe>
+</p>
+
+---
 ---
 
 ## Team Members
