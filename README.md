@@ -1,7 +1,6 @@
 # Smart-Manufacturing-Dashboard-for-Industry-4.0
 
-A unified Industry 4.0 analytics platform providing real-time equipment monitoring, predictive maintenance, and global manufacturing trend insights.  
-This dashboard focuses on Predictive Maintenance and Industry 4.0 Trends, using live IoT data and unsupervised anomaly detection.
+A unified Industry 4.0 analytics platform providing real-time equipment monitoring, predictive maintenance, and global manufacturing trend insights. This dashboard focuses on Predictive Maintenance and Industry 4.0 Trends, using live IoT data and unsupervised anomaly detection.
 
 ---
 
