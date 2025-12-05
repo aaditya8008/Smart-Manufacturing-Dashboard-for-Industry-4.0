@@ -154,9 +154,9 @@ npm run dev
 ```
 
 Frontend runs at:
-http://localhost:3000
+http://localhost:5173
 
 ---
 
 ## License
-This project is developed for **academic and research purposes** under the Smart Manufacturing & Industry 4.0 domain.
+This project is developed for **academic and research purposes**
