@@ -4,7 +4,7 @@ A unified Industry 4.0 analytics platform providing real-time equipment monitori
 
 ---
 
-## Project Demo Video (Click to play)
+## Project Demo Video (Click Thumbnail to play)
 
 [![Watch Video](https://github.com/aaditya8008/Smart-Manufacturing-Dashboard-for-Industry-4.0/blob/master/Screenshot%202025-11-24%20185843.png)](https://drive.google.com/file/d/1jpg7239VLSnmd8omnzy6J_0lhkgLzVti/preview)
 
