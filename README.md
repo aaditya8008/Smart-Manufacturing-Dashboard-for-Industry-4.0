@@ -1,7 +1,8 @@
 # Smart-Manufacturing-Dashboard-for-Industry-4.0
 
 A unified Industry 4.0 analytics platform providing **real-time equipment monitoring**, **predictive maintenance**, and **global manufacturing trend insights**.  
-This dashboard focuses **on Predictive Maintenance and Industry 4.0 Trends**, using live IoT data and unsupervised anomaly detection.
+This dashboard focuses on Predictive Maintenance and Industry 4.0 Trends, using live IoT data and unsupervised anomaly detection.
+
 ---
 
 ## 🎥 Project Description Video
@@ -11,7 +12,6 @@ This dashboard focuses **on Predictive Maintenance and Industry 4.0 Trends**, us
           width="720" height="405" allow="autoplay"></iframe>
 </p>
 
----
 ---
 
 ## Team Members
@@ -23,6 +23,7 @@ This dashboard focuses **on Predictive Maintenance and Industry 4.0 Trends**, us
 - **Supervisor:** *Dr. Ruchi Verma*, Assistant Professor (CSE/IT)
 
 ---
+
 
 ## Technologies Used
 
