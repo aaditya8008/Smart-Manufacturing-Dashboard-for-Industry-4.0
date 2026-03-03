@@ -34,7 +34,6 @@ export default function Dashboard() {
 
         setLive(l.data || {});
 
-        
         const series = h.series || [];
         const unique = [];
         const seen = new Set();
@@ -47,7 +46,6 @@ export default function Dashboard() {
         }
 
         setHistory(unique);
-
         setTrends(t.items || []);
       } catch (err) {
         console.error("Error loading dashboard data:", err);
@@ -59,7 +57,8 @@ export default function Dashboard() {
     return () => clearInterval(interval);
   }, []);
 
-  // Chart Data Prep
+  const isRealtime = live?.status === "active";
+
   const limitedHistory = history.slice(-25);
   const labels = limitedHistory.map((r) =>
     new Date(r.timestamp).toLocaleTimeString([], {
@@ -86,12 +85,28 @@ export default function Dashboard() {
 
   const pressureData = {
     labels,
-    datasets: [{ label: "Pressure (hPa)", data: limitedHistory.map((r) => r.pressure), borderColor: "#22c55e", borderWidth: 2, tension: 0.3 }],
+    datasets: [
+      {
+        label: "Pressure (hPa)",
+        data: limitedHistory.map((r) => r.pressure),
+        borderColor: "#22c55e",
+        borderWidth: 2,
+        tension: 0.3,
+      },
+    ],
   };
 
   const windData = {
     labels,
-    datasets: [{ label: "Wind (m/s)", data: limitedHistory.map((r) => r.wind), borderColor: "#8b5cf6", borderWidth: 2, tension: 0.3 }],
+    datasets: [
+      {
+        label: "Wind (m/s)",
+        data: limitedHistory.map((r) => r.wind),
+        borderColor: "#8b5cf6",
+        borderWidth: 2,
+        tension: 0.3,
+      },
+    ],
   };
 
   const anomalyData = {
@@ -104,29 +119,24 @@ export default function Dashboard() {
         borderWidth: 2,
         tension: 0.3,
         pointRadius: 2,
-        pointBackgroundColor: limitedHistory.map((r) => (r.anomaly ? "#dc2626" : "#facc15")),
-      },
-    ],
-  };
-
-  const riskChart = {
-    labels: (risk?.timeseries || []).map((p) =>
-      new Date(parseInt(p.date, 10) * 1000).toLocaleDateString()
-    ),
-    datasets: [
-      {
-        label: "Average Risk Probability",
-        data: (risk?.timeseries || []).map((p) => p.avg_risk),
-        borderColor: "#2563eb",
-        backgroundColor: "rgba(37,99,235,0.15)",
-        fill: true,
-        tension: 0.3,
+        pointBackgroundColor: limitedHistory.map((r) =>
+          r.anomaly ? "#dc2626" : "#facc15"
+        ),
       },
     ],
   };
 
   return (
-    <div className="max-w-7xl mx-auto text-gray-900">
+    <div className="max-w-7xl mx-auto text-gray-900 relative">
+
+      {/* STATUS DISPLAY */}
+      <div className="absolute top-0 right-0 mt-1 mr-2 text-sm font-medium">
+        <span className="text-black">Status: </span>
+        <span className={isRealtime ? "text-green-600" : "text-blue-600"}>
+          {isRealtime ? "Realtime" : "Simulating"}
+        </span>
+      </div>
+
       <h2 className="text-3xl font-semibold mb-6 text-gray-900">
         Smart Manufacturing Dashboard
       </h2>
@@ -146,45 +156,57 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         <div className="lg:col-span-3 grid md:grid-cols-2 gap-6">
 
-          {/* Combined */}
           <ChartCard title="Temperature, Humidity & Rain (Combined)">
             <div className="h-66 overflow-x-auto pb-2" ref={(el) => (scrollRefs.current[0] = el)}>
               <div className="min-w-[800px] h-64">
-                {history.length > 0 ? <Line data={combinedData} options={combinedOptions} /> : (
-                  <div className="h-64 flex items-center justify-center text-gray-500">Waiting for live data...</div>
+                {history.length > 0 ? (
+                  <Line data={combinedData} options={combinedOptions} />
+                ) : (
+                  <div className="h-64 flex items-center justify-center text-gray-500">
+                    Waiting for live data...
+                  </div>
                 )}
               </div>
             </div>
           </ChartCard>
 
-          {/* Pressure */}
           <ChartCard title="Pressure Trend (hPa)">
             <div className="h-66 overflow-x-auto pb-2" ref={(el) => (scrollRefs.current[1] = el)}>
               <div className="min-w-[800px] h-64">
-                {history.length > 0 ? <Line data={pressureData} options={combinedOptions} /> : (
-                  <div className="h-64 flex items-center justify-center text-gray-500">Waiting for data...</div>
+                {history.length > 0 ? (
+                  <Line data={pressureData} options={combinedOptions} />
+                ) : (
+                  <div className="h-64 flex items-center justify-center text-gray-500">
+                    Waiting for data...
+                  </div>
                 )}
               </div>
             </div>
           </ChartCard>
 
-          {/* Wind */}
           <ChartCard title="Wind Trend (m/s)">
             <div className="h-66 overflow-x-auto pb-2" ref={(el) => (scrollRefs.current[2] = el)}>
               <div className="min-w-[800px] h-64">
-                {history.length > 0 ? <Line data={windData} options={combinedOptions} /> : (
-                  <div className="h-64 flex items-center justify-center text-gray-500">Waiting for data...</div>
+                {history.length > 0 ? (
+                  <Line data={windData} options={combinedOptions} />
+                ) : (
+                  <div className="h-64 flex items-center justify-center text-gray-500">
+                    Waiting for data...
+                  </div>
                 )}
               </div>
             </div>
           </ChartCard>
 
-          {/* Anomaly */}
           <ChartCard title="Anomaly Scores Over Time">
             <div className="h-66 overflow-x-auto pb-2" ref={(el) => (scrollRefs.current[3] = el)}>
               <div className="min-w-[800px] h-64">
-                {history.length > 0 ? <Line data={anomalyData} options={combinedOptions} /> : (
-                  <div className="h-64 flex items-center justify-center text-gray-500">Waiting for data...</div>
+                {history.length > 0 ? (
+                  <Line data={anomalyData} options={combinedOptions} />
+                ) : (
+                  <div className="h-64 flex items-center justify-center text-gray-500">
+                    Waiting for data...
+                  </div>
                 )}
               </div>
             </div>
@@ -197,6 +219,7 @@ export default function Dashboard() {
           <h3 className="text-lg font-semibold text-gray-800 border-b border-gray-300 pb-2">
             Latest Industry 4.0 News
           </h3>
+
           {trends.length === 0 ? (
             <p className="text-sm text-gray-500">Loading news...</p>
           ) : (
@@ -207,8 +230,12 @@ export default function Dashboard() {
                   onClick={() => window.open(t.url, "_blank", "noopener")}
                   className="cursor-pointer p-3 bg-white rounded-lg border border-gray-200 hover:shadow-md transition-all hover:-translate-y-0.5"
                 >
-                  <p className="text-sm font-medium text-gray-900 line-clamp-2">{t.title}</p>
-                  <p className="text-xs text-gray-500 mt-1">{t.source ?? "Unknown Source"}</p>
+                  <p className="text-sm font-medium text-gray-900 line-clamp-2">
+                    {t.title}
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {t.source ?? "Unknown Source"}
+                  </p>
                 </li>
               ))}
             </ul>

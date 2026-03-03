@@ -17,3 +17,11 @@ export async function getTrends(q="industry 4.0", limit=12){
   const r = await api.get(`/trends?q=${encodeURIComponent(q)}&limit=${limit}`);
   return r.data;
 }
+export async function getSupplyRisk(){
+  const r = await api.get("/supply/risk");
+  return r.data;
+}
+export async function postSupplyPredict(payload){
+  const r = await api.post("/supply/predict", payload);
+  return r.data;
+}

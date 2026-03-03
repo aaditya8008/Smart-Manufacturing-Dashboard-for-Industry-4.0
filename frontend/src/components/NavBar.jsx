@@ -5,6 +5,7 @@ export default function NavBar() {
   const links = [
     { to: "/", label: "Dashboard" },
     { to: "/predictive", label: "Predictive Maintenance" },
+    { to: "/supply", label: "Supply Chain" },
     { to: "/trends", label: "Trends" },
   ];
 

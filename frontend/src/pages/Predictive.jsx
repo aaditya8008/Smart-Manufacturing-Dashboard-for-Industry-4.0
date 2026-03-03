@@ -25,7 +25,6 @@ export default function Predictive() {
       try {
         const h = await getHistory(300);
 
-        
         const series = h.series || [];
         const unique = [];
         const seen = new Set();
@@ -39,7 +38,6 @@ export default function Predictive() {
 
         setHistory(unique);
         setLoading(false);
-
       } catch (err) {
         console.error("Error loading ThingSpeak data:", err);
         setLoading(false);
@@ -50,6 +48,10 @@ export default function Predictive() {
     const interval = setInterval(load, 5000);
     return () => clearInterval(interval);
   }, []);
+
+ 
+  const latest = history[history.length - 1];
+  const isRealtime = latest?.status === "active";
 
   const limitedHistory = history.slice(-25);
   const labels = limitedHistory.map((r) =>
@@ -123,7 +125,16 @@ export default function Predictive() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto text-gray-900">
+    <div className="max-w-7xl mx-auto text-gray-900 relative">
+
+      {/*  STATUS DISPLAY */}
+      <div className="absolute top-0 right-0 mt-1 mr-2 text-sm font-medium">
+        <span className="text-black">Status: </span>
+        <span className={isRealtime ? "text-green-600" : "text-blue-600"}>
+          {isRealtime ? "Realtime" : "Simulating"}
+        </span>
+      </div>
+
       <h2 className="text-2xl font-semibold mb-4 text-gray-900">
         Predictive Maintenance Analytics
       </h2>

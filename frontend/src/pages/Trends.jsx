@@ -20,7 +20,7 @@ export default function Trends() {
 
   useEffect(() => {
     loadTrends();
-    const interval = setInterval(loadTrends, 120000); // refresh every 2 mins
+    const interval = setInterval(loadTrends, 50000); 
     return () => clearInterval(interval);
   }, []);
 
