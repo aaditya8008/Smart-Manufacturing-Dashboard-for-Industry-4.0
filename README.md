@@ -96,6 +96,8 @@ Smart-Manufacturing-Dashboard-for-Industry-4.0/
 │   └── vite.config.js
 │
 └── README.md
+│
+└── Screenshot 2025-11-24 185843.png
 ```
 
 ---
