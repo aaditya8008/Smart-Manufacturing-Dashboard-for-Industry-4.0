@@ -20,7 +20,7 @@ The system focuses on three major modules:
 
 ## Team Members
 
-- Aaditya – Team Lead, Frontend Development, Backend Integration, API Development, Supply Chain Module Integration  
+- Aaditya – Team Lead, Frontend Development, Backend Integration, API Development
 - Ankit Nath – Machine Learning Integration & API Development  
 - Ishita Gautam – Frontend Web Developer  
 - Rohit Kapoor – ML Model Development (Predictive Maintenance)  
