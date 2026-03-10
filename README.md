@@ -1,15 +1,21 @@
 # Smart-Manufacturing-Dashboard-for-Industry-4.0
 
-A unified **Industry 4.0 analytics platform** providing real-time equipment monitoring, predictive maintenance, supply chain risk analytics, and global manufacturing trend insights.
+A unified Industry 4.0 analytics platform designed for real-time equipment monitoring, predictive maintenance, supply chain risk analytics, and global manufacturing trend insights.
 
-This dashboard integrates **live IoT data, machine learning models, and external data sources** to support intelligent decision-making in smart manufacturing environments.
+This dashboard combines live IoT data, machine learning models, and external data sources to enable intelligent decision-making in smart manufacturing environments.
+
+## System Modules
 
 The system focuses on three major modules:
 
-- **Predictive Maintenance** using live IoT sensor data and **unsupervised anomaly detection (Isolation Forest)**  
-- **Supply Chain Risk Analytics** using a **supervised machine learning model (Random Forest)** to estimate operational risk levels  
-- **Industry 4.0 Trends** using RSS feeds to provide global manufacturing updates
+### 1. Predictive Maintenance
+Uses live IoT sensor data and unsupervised anomaly detection (Isolation Forest) to identify abnormal machine behavior and potential failures.
 
+### 2. Supply Chain Risk Analytics
+Uses a supervised machine learning model (Random Forest) to estimate operational risk levels and support supply chain decision-making.
+
+### 3. Industry 4.0 Trends
+Uses RSS feeds to deliver global manufacturing updates and emerging Industry 4.0 trends.
 ---
 
 ## Project Demo Video (Click Thumbnail to play)
