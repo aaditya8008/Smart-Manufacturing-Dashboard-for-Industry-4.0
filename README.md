@@ -133,12 +133,12 @@ Smart-Manufacturing-Dashboard-for-Industry-4.0/
 ## Features
 
 ### **1. Predictive Maintenance**
-- Live IoT data fetched via ThingSpeak API  
-- Isolation Forest anomaly detection  
-- Real-time anomaly score chart  
-- Temperature & environmental trend charts  
-- Sensor table with highlight indicators  
-- Auto-refreshing monitoring system  
+- Live IoT data retrieved using the ThingSpeak API  
+- Isolation Forest–based anomaly detection  
+- Real-time anomaly score visualization chart  
+- Temperature and environmental trend charts  
+- Sensor data table with highlighted indicators  
+- Auto-refreshing real-time monitoring system  
 
 ### **2. Supply Chain Risk Analytics**
 - Machine learning model predicting supply chain risk levels  
