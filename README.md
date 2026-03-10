@@ -38,28 +38,28 @@ Uses RSS feeds to deliver global manufacturing updates and emerging Industry 4.0
 
 ## Technologies Used
 
-### **Frontend**
+### Frontend
 - React.js (Vite)
 - Tailwind CSS
-- Chart.js (via react-chartjs-2)
+- Chart.js (through react-chartjs-2)
 
-### **Backend**
+### Backend
 - FastAPI (Python)
 - REST APIs
-- httpx (IoT sensor fetching)
+- httpx (for fetching IoT sensor data)
 
-### **Machine Learning**
-- **Predictive Maintenance:** Isolation Forest *(Unsupervised Anomaly Detection)*  
-- **Supply Chain Risk Prediction:** Random Forest *(Supervised Classification Model)*  
-- Scikit-learn  
-- Pandas  
-- NumPy  
+### Machine Learning
+- **Predictive Maintenance:** Isolation Forest *(Unsupervised Anomaly Detection)*
+- **Supply Chain Risk Prediction:** Random Forest *(Supervised Classification Model)*
+- Scikit-learn
+- Pandas
+- NumPy
 
-### **External APIs**
+### External APIs
 - ThingSpeak API (Live IoT Sensor Data)
 - Google News RSS (Industry 4.0 Trends)
 
-### **Dataset**
+### Dataset
 - **Supply Chain Risk Dataset:** Kaggle – Supply Chain Risk Data for SMEs
 
 ---
