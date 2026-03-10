@@ -16,6 +16,8 @@ Uses a supervised machine learning model (Random Forest) to estimate operational
 
 ### 3. Industry 4.0 Trends
 Uses RSS feeds to deliver global manufacturing updates and emerging Industry 4.0 trends.
+
+
 ---
 
 ## Project Demo Video (Click Thumbnail to play)
