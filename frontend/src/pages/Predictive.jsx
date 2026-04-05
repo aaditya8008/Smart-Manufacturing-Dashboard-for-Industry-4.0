@@ -200,53 +200,65 @@ export default function Predictive() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <ChartCard title="Recent Sensor Readings">
           <div className="h-80 overflow-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="text-left text-gray-700 border-b border-gray-300">
-                  <th className="py-1">Time</th>
-                  <th className="py-1">Temp</th>
-                  <th className="py-1">Humidity</th>
-                  <th className="py-1">Pressure</th>
-                  <th className="py-1">Rain</th>
-                  <th className="py-1">Wind</th>
-                  <th className="py-1">Anomaly</th>
-                  <th className="py-1">Anomaly Score</th>
-                </tr>
-              </thead>
-              <tbody>
-                {history.slice(-80).reverse().map((r, i) => (
-                  <tr
-                    key={i}
-                    className={`border-t border-gray-300 hover:bg-gray-100 ${
-                      r.anomaly ? "bg-red-100" : "bg-white"
-                    }`}
-                  >
-                    <td>{new Date(r.timestamp).toLocaleTimeString()}</td>
-                    <td>{r.temperature?.toFixed(2)}</td>
-                    <td>{r.humidity?.toFixed(2)}</td>
-                    <td>{r.pressure?.toFixed(2)}</td>
-                    <td>{r.rain?.toFixed(2)}</td>
-                    <td>{r.wind?.toFixed(2)}</td>
-                    <td className={r.anomaly ? "text-red-600 font-semibold" : "text-green-600"}>
-                      {r.anomaly ? "Yes" : "No"}
-                    </td>
-                    <td
-                      style={{
-                        color:
-                          r.anomaly_score > 0.7
-                            ? "#dc2626"
-                            : r.anomaly_score > 0.4
-                            ? "#f97316"
-                            : "#16a34a",
-                        fontWeight: "500",
-                      }}
-                    >
-                      {r.anomaly_score?.toFixed(2) ?? "--"}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <table className="w-full text-sm text-center">
+  <thead>
+    <tr className="text-gray-700 border-b border-gray-300">
+      <th className="py-1 text-center">Time</th>
+      <th className="py-1 text-center">Temp (°C)</th>
+      <th className="py-1 text-center">Humidity (%)</th>
+      <th className="py-1 text-center">Pressure (hPa)</th>
+      <th className="py-1 text-center">Rain (mm/hr)</th>
+      <th className="py-1 text-center">Wind (m/s)</th>
+      <th className="py-1 text-center">Anomaly</th>
+      <th className="py-1 text-center">Anomaly Score</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {history.slice(-80).reverse().map((r, i) => (
+      <tr
+        key={i}
+        className={`border-t border-gray-300 hover:bg-gray-100 ${
+          r.anomaly ? "bg-red-100" : "bg-white"
+        }`}
+      >
+        <td className="text-center">
+          {new Date(r.timestamp).toLocaleTimeString()}
+        </td>
+        <td className="text-center">{r.temperature?.toFixed(2)}</td>
+        <td className="text-center">{r.humidity?.toFixed(2)}</td>
+        <td className="text-center">{r.pressure?.toFixed(2)}</td>
+        <td className="text-center">{r.rain?.toFixed(2)}</td>
+        <td className="text-center">{r.wind?.toFixed(2)}</td>
+
+        <td
+          className={`text-center ${
+            r.anomaly
+              ? "text-red-600 font-semibold"
+              : "text-green-600"
+          }`}
+        >
+          {r.anomaly ? "Yes" : "No"}
+        </td>
+
+        <td
+          className="text-center"
+          style={{
+            color:
+              r.anomaly_score > 0.7
+                ? "#dc2626"
+                : r.anomaly_score > 0.4
+                ? "#f97316"
+                : "#16a34a",
+            fontWeight: "500",
+          }}
+        >
+          {r.anomaly_score?.toFixed(2) ?? "--"}
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
           </div>
         </ChartCard>
 
