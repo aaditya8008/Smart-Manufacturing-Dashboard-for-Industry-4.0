@@ -1,6 +1,6 @@
 # app/services/predictive_service.py
 # Real-time IoT Monitoring + Predictive Analytics
-# ThingSpeak Live Data + Simulation Fallback + Anomaly Detection
+# ThingSpeak Live Data + Simulation Fallback + Anomaly Detection + Notifications
 
 import asyncio
 import os
@@ -10,6 +10,9 @@ from collections import deque
 import numpy as np
 import random
 from app.models.live_anomaly_model import LiveAnomalyModel
+
+
+from app.services.notification_service import send_anomaly_alert
 
 # ================= CONFIG =================
 
@@ -28,11 +31,6 @@ model = LiveAnomalyModel()
 # ================= SIMULATION =================
 
 def simulate_weather(last=None):
-    """
-    Generate realistic simulated sensor values
-    Used ONLY when remote IoT station is offline
-    """
-
     if not last or last.get("status") != "active":
         return {
             "temperature": round(random.uniform(22, 30), 2),
@@ -54,10 +52,6 @@ def simulate_weather(last=None):
 # ================= MODEL INIT =================
 
 async def initialize_model():
-    """
-    Train IsolationForest using real data if available.
-    Fallback to synthetic dataset for cold start.
-    """
     try:
         base_url = f"https://api.thingspeak.com/channels/{THINGSPEAK_CHANNEL}/feeds.json"
         params = {"results": BOOTSTRAP_SAMPLES}
@@ -99,13 +93,35 @@ async def initialize_model():
         print("[Model] Initialized using synthetic dataset")
 
 
+# ================= NOTIFICATION HELPER =================
+
+def trigger_notification(sample):
+    """
+    Send notification ONLY if anomaly detected.
+    Anti-spam handled in notification_service (1 hour rule)
+    """
+    if not sample.get("anomaly"):
+        return
+
+    try:
+        message = (
+            f"⚠️ Anomaly Detected!\n\n"
+            f"Temp: {sample['temperature']}°C\n"
+            f"Humidity: {sample['humidity']}%\n"
+            f"Pressure: {sample['pressure']} hPa\n"
+            f"Wind: {sample['wind']} m/s\n\n"
+            f"Time: {sample['timestamp']}"
+        )
+
+        send_anomaly_alert(message)
+
+    except Exception as e:
+        print(f"[Notification Error] {e}")
+
+
 # ================= FETCH LOGIC =================
 
 async def fetch_from_thingspeak():
-    """
-    Fetch live data from ThingSpeak.
-    If remote station is offline → simulate values.
-    """
 
     base_url = f"https://api.thingspeak.com/channels/{THINGSPEAK_CHANNEL}/feeds.json"
     params = {"results": 1}
@@ -130,7 +146,6 @@ async def fetch_from_thingspeak():
 
                     diff = (datetime.now(timezone.utc) - created_time).total_seconds()
 
-                    # ===== REAL SENSOR DATA =====
                     if diff <= 1800:
                         sample = {
                             "status": "active",
@@ -155,6 +170,9 @@ async def fetch_from_thingspeak():
                         sample["anomaly"] = pred == -1
                         sample["anomaly_score"] = round(score, 3)
 
+                        #  TRIGGER NOTIFICATION
+                        trigger_notification(sample)
+
                         return sample
 
     except Exception as e:
@@ -165,7 +183,6 @@ async def fetch_from_thingspeak():
     last = _live_buffer[-1] if _live_buffer else None
     sim = simulate_weather(last)
 
-    # anomaly prediction on simulated data
     x = np.array([
         sim["temperature"],
         sim["humidity"],
@@ -176,7 +193,7 @@ async def fetch_from_thingspeak():
 
     pred, score = model.predict_one(x)
 
-    return {
+    sample = {
         "status": "simulated",
         "source": "simulation_engine",
         "inference_mode": "simulated",
@@ -188,6 +205,11 @@ async def fetch_from_thingspeak():
         "anomaly": True if pred == -1 else False,
         "anomaly_score": round(score, 3)
     }
+
+    # TRIGGER NOTIFICATION
+    trigger_notification(sample)
+
+    return sample
 
 
 # ================= LOOP =================

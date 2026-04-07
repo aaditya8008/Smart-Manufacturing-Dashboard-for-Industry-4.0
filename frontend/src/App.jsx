@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import Predictive from "./pages/Predictive";
 import SupplyChain from "./pages/SupplyChain";
 import Trends from "./pages/Trends";
+import Notifications from "./pages/Notifications"; 
 
 export default function App(){
   return (
@@ -16,6 +17,10 @@ export default function App(){
           <Route path="/predictive" element={<Predictive />} />
           <Route path="/supply" element={<SupplyChain />} />
           <Route path="/trends" element={<Trends />} />
+
+          {/* NEW ROUTE */}
+          <Route path="/notifications" element={<Notifications />} />
+
         </Routes>
       </div>
     </div>

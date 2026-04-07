@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { Bell } from "lucide-react";
 
 export default function NavBar() {
   const links = [
@@ -11,7 +12,9 @@ export default function NavBar() {
 
   return (
     <header className="bg-slate-800/90 backdrop-blur-sm p-4 shadow-md sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto flex items-center justify-center">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        
+        {/* LEFT SIDE NAV LINKS */}
         <nav className="flex space-x-8">
           {links.map((l) => (
             <NavLink
@@ -29,6 +32,21 @@ export default function NavBar() {
             </NavLink>
           ))}
         </nav>
+
+     
+        <NavLink
+  to="/notifications"
+  className={({ isActive }) =>
+    `relative p-2 rounded-full transition ${
+      isActive
+        ? "bg-blue-600 text-white"
+        : "text-slate-300 hover:text-white hover:bg-slate-700"
+    }`
+  }
+>
+  🔔 Notification Alerts
+</NavLink>
+
       </div>
     </header>
   );
