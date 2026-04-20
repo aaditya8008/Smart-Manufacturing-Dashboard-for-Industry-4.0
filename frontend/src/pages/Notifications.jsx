@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const BASE_URL = "http://127.0.0.1:8000/api";
+const BASE_URL = "https://smart-manufacturing-dashboard-for.onrender.com/api";
 
 export default function Notifications() {
   const [numbers, setNumbers] = useState({});
