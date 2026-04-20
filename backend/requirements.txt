@@ -10,3 +10,5 @@ python-multipart
 python-dateutil
 pydantic
 python-jose
+twilio
+python-dotenv
