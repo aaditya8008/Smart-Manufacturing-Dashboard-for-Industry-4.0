@@ -91,7 +91,7 @@ export default function SupplyChain() {
         />
         <KPI
           title="Data Source"
-          value={risk?.source?.split("\\").slice(-1)[0] ?? "--"}
+          value={risk?.source?.split("/").pop() ?? "--"}
           sub="Dataset used"
         />
         <KPI
