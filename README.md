@@ -81,14 +81,7 @@ The system architecture consists of five major layers:
 4. Machine Learning Layer  
 5. Frontend Visualization Layer  
 
-### Workflow
 
-```text
-IoT Sensors → ThingSpeak Cloud → FastAPI Backend
-→ Machine Learning Models
-→ React Dashboard
-→ SMS Alerts & Analytics
-```
 
 ---
 
