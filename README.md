@@ -419,7 +419,7 @@ RETRAIN_SECRET=
 ### Frontend Deployment
 - Platform: Vercel
 - Framework: React + Vite
-- Live Website: https://your-vercel-link.vercel.app
+- Live Website: https://smart-manufacturing-dashboard-for-i.vercel.app/
 
 ---
 
