@@ -1,101 +1,79 @@
-# Smart Manufacturing Dashboard for Industry 4.0
+# Smart-Manufacturing-Dashboard-for-Industry-4.0
 
-An Industry 4.0–based intelligent analytics platform for real-time IoT monitoring, predictive maintenance, supply chain risk analysis, and Industry 4.0 trend tracking using Machine Learning, FastAPI, ReactJS, and cloud deployment.
+A unified Industry 4.0 analytics platform designed for real-time equipment monitoring, predictive maintenance, supply chain risk analytics, and global manufacturing trend insights.
 
-The platform integrates live IoT sensor streams, machine learning models, external APIs, and interactive dashboards to support intelligent industrial monitoring and decision-making.
-
----
-
-# Project Overview
-
-The Smart Manufacturing Dashboard provides:
-
-- Real-time IoT sensor monitoring
-- Predictive maintenance using anomaly detection
-- Supply chain risk prediction
-- Industry 4.0 trends and news updates
-- Real-time SMS alert notifications
-- Cloud-based deployment and accessibility
-
-The system continuously retrieves live environmental sensor data from ThingSpeak and processes it using machine learning models to detect abnormal conditions and generate intelligent insights.
+This dashboard combines live IoT data, machine learning models, external APIs, and cloud deployment to enable intelligent decision-making in smart manufacturing environments.
 
 ---
 
-# System Modules
+## System Modules
 
-## 1. Predictive Maintenance
+The system focuses on three major modules:
 
-The Predictive Maintenance module uses live IoT sensor data and Isolation Forest anomaly detection to identify abnormal machine or environmental conditions.
+### 1. Predictive Maintenance
+Uses live IoT sensor data and unsupervised anomaly detection (Isolation Forest) to identify abnormal machine behavior and potential failures.
 
 ### Features
 - Real-time IoT sensor monitoring
 - Isolation Forest–based anomaly detection
-- Live anomaly scoring
 - Historical sensor trend visualization
+- Dynamic anomaly score generation
 - Automatic simulation fallback during API downtime
-- Real-time SMS alerts using Twilio
-
-### Sensor Parameters
-- Temperature
-- Humidity
-- Pressure
-- Rainfall
-- Wind Speed
+- Real-time SMS alerts using Twilio API
 
 ---
 
-## 2. Supply Chain Risk Analytics
-
-The Supply Chain module predicts operational risk levels using a Random Forest classification model trained on supply chain datasets.
+### 2. Supply Chain Risk Analytics
+Uses a supervised machine learning model (Random Forest) to estimate operational risk levels and support supply chain decision-making.
 
 ### Features
-- Risk classification:
+- Risk prediction categories:
   - Low
   - Medium
   - High
 - Risk probability estimation
 - Feature importance analysis
-- Historical risk trend charts
-- Custom prediction API support
-- Dataset preprocessing and scaling
-
-### Input Parameters
-- Inventory Level
-- Pending Orders
-- Supplier Lead Time
-- Supplier Reliability
-- Supplier Quality Score
-- Fuel Price Index
-- Port Delay Days
-- Weather Disruption Score
-- Market Demand Index
+- Historical risk trend visualization
+- Custom API-based prediction support
+- Preprocessing with scaling and categorical encoding
 
 ---
 
-## 3. Industry 4.0 Trends
-
-This module fetches and parses Industry 4.0–related news and manufacturing updates using RSS feeds.
+### 3. Industry 4.0 Trends
+Uses RSS feeds to deliver global manufacturing updates and emerging Industry 4.0 trends.
 
 ### Features
-- Live RSS feed integration
 - Google News RSS parsing
-- Auto-updating trends section
+- Auto-updating Industry 4.0 news
 - Article summaries and timestamps
-- Industry-related keyword filtering
+- TrendCards UI integration
+- Keyword-based trend filtering
 
 ---
 
-# Project Demo Video
-
-## Click Thumbnail to Watch
+## Project Demo Video (Click Thumbnail to play)
 
 [![Watch Video](https://github.com/aaditya8008/Smart-Manufacturing-Dashboard-for-Industry-4.0/blob/master/Screenshot%202025-11-24%20185843.png)](https://drive.google.com/file/d/1jpg7239VLSnmd8omnzy6J_0lhkgLzVti/preview)
 
 ---
 
-# System Architecture
+## Team Members
 
-The system architecture contains five major layers:
+- Aaditya – Team Lead, Frontend Development, Backend Integration, API Development, Twilio Integration & Deployment
+- Ankit Nath – Machine Learning Integration & API Development  
+- Ishita Gautam – Frontend Web Developer & Industry 4.0 Trends Module
+- Rohit Kapoor – ML Model Development (Predictive Maintenance)  
+
+### Supervisor
+**Dr. Ruchi Verma**  
+Assistant Professor (SG), Department of CSE/IT  
+Jaypee University of Information Technology
+
+---
+
+## System Architecture
+
+The system architecture consists of five major layers:
 
 1. Data Source Layer  
 2. Data Ingestion Layer  
@@ -103,7 +81,7 @@ The system architecture contains five major layers:
 4. Machine Learning Layer  
 5. Frontend Visualization Layer  
 
-## Workflow
+### Workflow
 
 ```text
 IoT Sensors → ThingSpeak Cloud → FastAPI Backend
@@ -114,61 +92,50 @@ IoT Sensors → ThingSpeak Cloud → FastAPI Backend
 
 ---
 
-# Technologies Used
+## Technologies Used
 
-## Frontend
+### Frontend
 - React.js (Vite)
 - Tailwind CSS
-- Chart.js
-- React-ChartJS-2
+- Chart.js (through react-chartjs-2)
 - Axios
 
-## Backend
-- FastAPI
-- Python
+### Backend
+- FastAPI (Python)
 - REST APIs
 - httpx
-- Async Processing
+- Async processing
 
-## Machine Learning
+### Machine Learning
+- Isolation Forest (Unsupervised Anomaly Detection)
+- Random Forest (Supervised Classification)
 - Scikit-learn
-- Isolation Forest
-- Random Forest Classifier
 - Pandas
 - NumPy
 - Joblib
 
-## APIs & External Services
-- ThingSpeak API
+### External APIs & Services
+- ThingSpeak API (Live IoT Sensor Data)
 - Google News RSS
-- Twilio API
+- Twilio Verify API
 
-## Deployment
-- Render (Backend)
-- Vercel (Frontend)
+### Deployment
+- Render (Backend Deployment)
+- Vercel (Frontend Deployment)
 
-## Development Tools
+### Development Tools
 - VS Code
 - Git & GitHub
 - Postman
 
 ---
 
-# Machine Learning Models
+## Machine Learning Models
 
-## Isolation Forest (Predictive Maintenance)
-
+### Predictive Maintenance Model
 The anomaly detection system uses Isolation Forest for unsupervised anomaly detection on live IoT sensor streams.
 
-### Model Features
-- Real-time anomaly prediction
-- Multi-sensor anomaly analysis
-- Batch and single prediction support
-- Dynamic anomaly scoring
-- Millisecond-level inference
-
-### Input Vector
-
+#### Input Features
 ```python
 [
  temperature,
@@ -179,69 +146,74 @@ The anomaly detection system uses Isolation Forest for unsupervised anomaly dete
 ]
 ```
 
+#### Capabilities
+- Real-time anomaly detection
+- Dynamic anomaly scoring
+- Batch and single prediction support
+- Millisecond-level inference
+- Continuous live monitoring
+
 ---
 
-## Random Forest (Supply Chain Risk)
-
+### Supply Chain Risk Prediction Model
 The supply chain risk module uses a supervised Random Forest classification model.
 
-### Training Pipeline
+#### Training Pipeline
 - Missing value handling
 - Numerical scaling
 - Categorical encoding
 - Feature alignment
 - Model persistence using Joblib
 
-### Output
+#### Output
 - Risk Label
 - Risk Probability
 - Feature Importance
 
-### Achieved Accuracy
+#### Achieved Accuracy
 - Approximately 92% classification accuracy
 
 ---
 
-# Notification System
+## Notification System
 
-The project integrates Twilio Verify API and SMS alerts.
+The project integrates Twilio Verify API and SMS alert notifications.
 
-## Features
+### Features
 - OTP verification
 - Phone number registration
 - Real-time anomaly alerts
 - Anti-spam cooldown mechanism
-- Notification persistence
+- Notification persistence using JSON storage
 
-## Alert Conditions
-
+### Alert Conditions
 SMS alerts are triggered whenever:
 - An anomaly is detected
-- Sensor conditions become abnormal
+- Sensor values become abnormal
 - Critical environmental thresholds are exceeded
 
 ---
 
-# API Endpoints
+## API Endpoints
 
-## Live Monitoring APIs
+### Live Monitoring APIs
 
 | Endpoint | Method | Description |
 |---|---|---|
-| `/api/live_data` | GET | Get latest sensor data |
+| `/api/live_data` | GET | Get latest live sensor data |
 | `/api/history` | GET | Get historical sensor data |
 
 ---
 
-## Trends APIs
+### Trends APIs
 
 | Endpoint | Method | Description |
 |---|---|---|
-| `/api/trends` | GET | Get Industry 4.0 news |
+| `/api/trends` | GET | Fetch Industry 4.0 news |
 
 ---
 
-## Supply Chain APIs
+### Supply Chain APIs
 
 | Endpoint | Method | Description |
 |---|---|---|
@@ -251,7 +223,7 @@ SMS alerts are triggered whenever:
 
 ---
 
-## Notification APIs
+### Notification APIs
 
 | Endpoint | Method | Description |
 |---|---|---|
@@ -262,38 +234,52 @@ SMS alerts are triggered whenever:
 
 ---
 
-# Frontend Features
+## Features
 
-## Dashboard
-- KPI Cards
-- Live Charts
-- Real-time Monitoring
-- Industry 4.0 News
-- System Status Indicators
-
-## Predictive Maintenance Page
-- Live anomaly visualization
-- Sensor history
-- Real-time anomaly score chart
-- Alert indicators
-
-## Supply Chain Dashboard
-- Risk probability graphs
-- Feature importance analysis
-- Risk classification results
-- Trend visualization
-
-## Trends Page
-- RSS-based Industry 4.0 updates
-- News summaries
-- Auto-refreshing trend cards
+### 1. Predictive Maintenance
+- Live IoT data retrieved using ThingSpeak API
+- Isolation Forest–based anomaly detection
+- Real-time anomaly score visualization
+- Environmental trend charts
+- Auto-refreshing monitoring system
+- SMS-based anomaly alerts
 
 ---
 
-# Project Structure
+### 2. Supply Chain Risk Analytics
+- Machine learning–based supply risk prediction
+- Random Forest classification model
+- Low / Medium / High risk classification
+- Risk probability estimation
+- Feature importance analysis
+- Historical risk trends
+- API-based custom prediction support
+
+---
+
+### 3. Industry 4.0 Trends
+- Fetches global manufacturing news
+- RSS-based live updates
+- Clean TrendCards UI
+- Auto-updating trend system
+
+---
+
+### 4. Unified Dashboard
+- KPI indicators
+- Live IoT visualization
+- Real-time charts
+- System status indicators
+- Industry 4.0 trends sidebar
+- Supply chain analytics integration
+
+---
+
+## Project Structure
 
 ```text
 Smart-Manufacturing-Dashboard-for-Industry-4.0/
+├── .env.example
 │
 ├── backend/
 │   ├── app/
@@ -322,17 +308,33 @@ Smart-Manufacturing-Dashboard-for-Industry-4.0/
 │   │   └── supply_chain_risk_dataset.csv
 │   │
 │   ├── models/
-│   │   ├── supply_risk_model.pkl
-│   │   └── supply_preprocessor.pkl
+│   │   ├── supply_preprocessor.pkl
+│   │   └── supply_risk_model.pkl
 │   │
 │   └── requirements.txt
 │
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
+│   │   │   ├── ChartCard.jsx
+│   │   │   ├── KPI.jsx
+│   │   │   ├── NavBar.jsx
+│   │   │   └── TrendCard.jsx
+│   │   │
 │   │   ├── pages/
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── Predictive.jsx
+│   │   │   ├── SupplyChain.jsx
+│   │   │   ├── Trends.jsx
+│   │   │   └── Notifications.jsx
+│   │   │
 │   │   ├── services/
-│   │   └── App.jsx
+│   │   │   └── api.js
+│   │   │
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   ├── main.jsx
+│   │   └── index.css
 │   │
 │   └── package.json
 │
@@ -343,16 +345,16 @@ Smart-Manufacturing-Dashboard-for-Industry-4.0/
 
 ---
 
-# Setup and Installation
+## Setup and Installation
 
-## Prerequisites
+### Prerequisites
 - Node.js
 - Python 3.9+
 - pip
 
 ---
 
-# Backend Setup
+## Backend Setup
 
 ```bash
 cd backend
@@ -374,7 +376,7 @@ http://localhost:8000
 
 ---
 
-# Frontend Setup
+## Frontend Setup
 
 ```bash
 cd frontend
@@ -392,7 +394,7 @@ http://localhost:5173
 
 ---
 
-# Environment Variables
+## Environment Variables
 
 Create a `.env` file inside the backend directory.
 
@@ -414,80 +416,57 @@ RETRAIN_SECRET=
 
 ---
 
-# Deployment
+## Deployment
 
-## Backend Deployment
+### Backend Deployment
 - Platform: Render
 - Framework: FastAPI
+- Live API: https://smart-manufacturing-dashboard-for.onrender.com
 
-## Frontend Deployment
+### Frontend Deployment
 - Platform: Vercel
 - Framework: React + Vite
+- Live Website: https://your-vercel-link.vercel.app
 
 ---
 
-# Experimental Results
+## Experimental Results
 
-## Predictive Maintenance
+### Predictive Maintenance
 - Real-time anomaly detection achieved successfully
 - Stable live monitoring performance
 - Millisecond-level ML predictions
 - Automatic simulation fallback during API downtime
 
-## Supply Chain Risk
-- Approximate model accuracy: 92%
-- Successful classification of Low / Medium / High risk
+### Supply Chain Risk
+- Approximately 92% model accuracy
+- Successful Low / Medium / High classification
 - Feature importance analysis generated correctly
 
-## Performance
+### Performance
 - API Response Time: 200–300 ms
 - Dashboard Load Time: 1–2 seconds
 - ML Prediction Time: <10 ms
 
 ---
 
-# Future Improvements
+## Future Improvements
 
 - Deep learning–based anomaly detection
-- More IoT sensor integration
+- Additional IoT sensor integration
 - Email-based notification support
-- Enhanced cybersecurity
+- Enhanced cybersecurity mechanisms
 - Demand forecasting integration
-- Industrial-scale deployment optimization
+- Industrial-scale optimization
 
 ---
 
-# Team Members
-
-- Aaditya  
-  Team Lead, Frontend Development, Backend Integration, API Development, Deployment, Twilio Integration
-
-- Ankit Nath  
-  Machine Learning Integration & Backend Support
-
-- Ishita Gautam  
-  Frontend Development & Trends Module
-
-- Rohit Kapoor  
-  Predictive Maintenance & ML Integration
-
----
-
-# Supervisor
-
-Dr. Ruchi Verma  
-Assistant Professor (SG)  
-Department of CSE & IT  
-Jaypee University of Information Technology
-
----
-
-# GitHub Repository
+## GitHub Repository
 
 https://github.com/aaditya8008/Smart-Manufacturing-Dashboard-for-Industry-4.0
 
 ---
 
-# License
+## License
 
 This project is developed for academic and research purposes only.
