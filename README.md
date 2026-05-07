@@ -53,7 +53,7 @@ Uses RSS feeds to deliver global manufacturing updates and emerging Industry 4.0
 
 ## Project Demo Video (Click Thumbnail to play)
 
-[![Watch Video](https://github.com/aaditya8008/Smart-Manufacturing-Dashboard-for-Industry-4.0/blob/master/Screenshot%202025-11-24%20185843.png)](https://drive.google.com/file/d/1jpg7239VLSnmd8omnzy6J_0lhkgLzVti/preview)
+[![Watch Video](https://github.com/aaditya8008/Smart-Manufacturing-Dashboard-for-Industry-4.0/blob/master/Screenshot%202025-11-24%20185843.png)](https://drive.google.com/file/d/1zfVt9mH-NT2GuBPH-HuKGrx7pr6YEhUI/preview)
 
 ---
 
