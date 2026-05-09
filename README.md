@@ -7,7 +7,7 @@ This dashboard combines live IoT data, machine learning models, external APIs, a
 ## Major Project Poster
 
 <p align="center">
-  <img src="ETE_Poster_image.png" alt="Major Project Poster" width="1000"/>
+  <img src="ETE_Poster_image.jpg" alt="Major Project Poster" width="1000"/>
 </p>
 
 ---
