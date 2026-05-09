@@ -4,7 +4,7 @@ A unified Industry 4.0 analytics platform designed for real-time equipment monit
 
 This dashboard combines live IoT data, machine learning models, external APIs, and cloud deployment to enable intelligent decision-making in smart manufacturing environments.
 
-## Major Project Poster
+## Project Poster
 
 <p align="center">
   <img src="ETE_Poster_image.jpg" alt="Project Poster" width="1000"/>
